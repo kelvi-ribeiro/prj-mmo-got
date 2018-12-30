@@ -1,5 +1,5 @@
 module.exports = function(application){
-	application.get('/', function(req, res){
-		res.send('jogo');
+	application.get('/jogo', function(req, res){
+		application.app.controllers.jogo.jogo(application,req,res);
 	});
 }
