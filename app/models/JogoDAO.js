@@ -61,9 +61,10 @@ JogoDAO.prototype.acao = function(acao) {
 }
 
 JogoDAO.prototype.getAcoes = function(res,usuario) {            
+    const momentoAtual = new Date().getTime();
     var dados = {
     operacao: "pesquisar",
-    entity: usuario,
+    entity: {usuario:usuario,acaoTerminaEm:{$gt:momentoAtual}},
     collection: "acao",
     callback: function(err, result) {          
         res.render('pergaminhos',{acoes:result})
