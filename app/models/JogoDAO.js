@@ -56,6 +56,18 @@ JogoDAO.prototype.acao = function(acao) {
     this._connection(dados);
 }
 
+JogoDAO.prototype.getAcoes = function(connection,usuario) {            
+    var dados = {
+    operacao: "pesquisar",
+    entity: usuario,
+    collection: "acao",
+    callback: function(err, result) {          
+        console.log(result);
+     }
+    };
+    this._connection(dados);        
+}
+
 module.exports = function() {
     return JogoDAO;
     };
