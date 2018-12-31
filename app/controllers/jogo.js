@@ -1,6 +1,6 @@
 module.exports.jogo = function(application,req,res){
     if(req.session.autorizado){
-        res.render('jogo')
+        res.render('jogo',{imgCasa:req.session.casa});
     }else{
         res.render('index',{validacao:{},dadosForm:{},userNotFound:false})
     }

@@ -44,7 +44,7 @@
 						<input type="text" value="<%=dadosForm.usuario%>" name="usuario" id="usuario" placeholder="Usuário" class="form-control" autocomplete="off" />
 						<input type="password" value="<%=dadosForm.senha%>" name="senha" id="senha" placeholder="Senha" class="form-control" />
 						<button type="submit" class="btn btn-success">Entrar</button>
-						<button type="button" class="btn btn-info">Cadastro</button>
+						<button id="btn_ir_cadastro" type="button" class="btn btn-info">Cadastro</button>
 					</div>
 				</form>
 			</div>
@@ -63,6 +63,12 @@
 		    	</div>
 	    	</div>
 	    </div>	
-		
+		<script>
+			$(document).ready(function(){
+				$('#btn_ir_cadastro').click(function(){					
+					window.location.href = '/cadastro';
+				});
+			});
+		</script>
 	</body>
 </html>
