@@ -4,10 +4,9 @@ function UsuarioDAO(connection) {
     UsuarioDAO.prototype.inserirUsuario = function(usuario, res) {
     var dados = {
     operacao: "inserir",
-    usuario: usuario,
+    entity: usuario,
     collection: "usuario",
-    callback: function(err, result) {
-    console.log('hehe',result.ops[0].nome)
+    callback: function(err, result) {    
     res.send(`Olá ${result.ops[0].nome}`);
     }
     };
@@ -16,7 +15,7 @@ function UsuarioDAO(connection) {
     UsuarioDAO.prototype.autenticar = function(usuario, req,res) {
         var dados = {
         operacao: "pesquisar",
-        usuario: usuario,
+        entity: usuario,
         collection: "usuario",
         callback: function(err, result) {        
           if(result[0] != undefined){

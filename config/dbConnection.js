@@ -14,11 +14,11 @@ client.close();
 function query(db, dados) {
     var collection = db.collection(dados.collection);
     switch (dados.operacao) {
-        case "inserir":
-            collection.insertOne(dados.usuario, dados.callback);
+        case "inserir":            
+            collection.insertOne(dados.entity, dados.callback);
             break;
         case "pesquisar":
-            collection.find(dados.usuario).toArray(dados.callback)
+            collection.find(dados.entity).toArray(dados.callback)
             break;
         default:       
     }
