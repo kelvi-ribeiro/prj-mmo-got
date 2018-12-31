@@ -30,28 +30,38 @@
 		</nav>
 
 	    <div class="container">
+			<% if(validacao.length){ %>
+				<div class="alert alert-danger" role="alert">
+					<strong>Atenção!</strong>
+					<ul>
+						<% for(var i = 0; i< validacao.length; i++){%>
+							<li><%=validacao[i].msg%></li>
+						<%} %>
+					</ul>
+				</div>
+			<% } %>
 	    		
-			<form class="form-cadastro">
+			<form class="form-cadastro" action="/cadastrar" method="POST">
 			
 				<div class="row">
 					<div class="col-xs-4">
 						<div class="form-group">
 							<label for="nome" class="col-sm-2 col-form-label">Nome</label>
-							<input type="nome" class="form-control" id="nome" placeholder="Nome">
+							<input type="nome"   value="<%= dadosForm.nome %>" class="form-control" required id="nome" name="nome" placeholder="Nome">
 						</div>
 					</div>
 					
 					<div class="col-xs-4">
 						<div class="form-group">
 							<label for="usuario" class="col-sm-2 col-form-label">Usuário</label>
-							<input type="usuario" class="form-control" id="usuario" placeholder="Usuário">
+							<input type="usuario"  value="<%= dadosForm.usuario %>" class="form-control" required id="usuario" name="usuario" placeholder="Usuário">
 						</div>
 					</div>
 					
 					<div class="col-xs-4">
 						<div class="form-group">
 							<label for="senha" class="col-sm-2 col-form-label">Senha</label>
-							<input type="password" class="form-control" id="senha" placeholder="Password">
+							<input type="password" value="<%= dadosForm.senha %>"  class="form-control" required id="senha" name="senha" placeholder="Password">
 						</div>
 					</div>
 				</div>
@@ -61,42 +71,42 @@
         			<div class="col-xs-2">
         				<img src="images/casa_arryn.jpg" class="img-responsive img-radio">
 						<center>
-							<input type="radio" id="left-item" name="casa" value="arryn"> Casa Arryn
+							<input type="radio" required id="left-item" name="casa" value="arryn"> Casa Arryn
 						</center>
         			</div>
 					
 					<div class="col-xs-2">
         				<img src="images/casa_baratheon.jpg" class="img-responsive img-radio">
 						<center>
-							<input type="radio" id="left-item" name="casa" value="baratheon"> Casa Baratheon
+							<input type="radio" required id="left-item" name="casa" value="baratheon"> Casa Baratheon
 						</center>
         			</div>
 					
 					<div class="col-xs-2">
         				<img src="images/casa_greyjoy.jpg" class="img-responsive img-radio">
 						<center>
-							<input type="radio" id="left-item" name="casa" value="greyjoy"> Casa Greyjoy
+							<input type="radio" required id="left-item" name="casa" value="greyjoy"> Casa Greyjoy
 						</center>
         			</div>
 					
 					<div class="col-xs-2">
         				<img src="images/casa_lannister.jpg" class="img-responsive img-radio">
 						<center>
-							<input type="radio" id="left-item" name="casa" value="lannister"> Casa Lannister
+							<input type="radio" required id="left-item" name="casa" value="lannister"> Casa Lannister
 						</center>
         			</div>
 					
 					<div class="col-xs-2">
         				<img src="images/casa_martell.jpg" class="img-responsive img-radio">
 						<center>
-							<input type="radio" id="left-item" name="casa" value="martell"> Casa Martell
+							<input type="radio" required id="left-item" name="casa" value="martell"> Casa Martell
 						</center>
         			</div>
 					
 					<div class="col-xs-2">
         				<img src="images/casa_stark.jpg" class="img-responsive img-radio">
 						<center>
-							<input type="radio" id="left-item" name="casa" value="stark"> Casa Stark
+							<input type="radio" required id="left-item" name="casa" value="stark"> Casa Stark
 						</center>
         			</div>
         		</div>
@@ -108,21 +118,21 @@
         			<div class="col-xs-2">
         				<img src="images/casa_targaryen.jpg" class="img-responsive img-radio">
 						<center>
-							<input type="radio" id="left-item" name="casa" value="targaryen"> Casa Targaryen
+							<input type="radio" required id="left-item" name="casa" value="targaryen"> Casa Targaryen
 						</center>
         			</div>
 					
 					<div class="col-xs-2">
         				<img src="images/casa_tully.jpg" class="img-responsive img-radio">
 						<center>
-							<input type="radio" id="left-item" name="casa" value="tully"> Casa Tully
+							<input type="radio" required id="left-item" name="casa" value="tully"> Casa Tully
 						</center>
         			</div>
 					
 					<div class="col-xs-2">
         				<img src="images/casa_tyrell.jpg" class="img-responsive img-radio">
 						<center>
-							<input type="radio" id="left-item" name="casa" value="tyrell"> Casa Tyrell
+							<input type="radio" required id="left-item" name="casa" value="tyrell"> Casa Tyrell
 						</center>
         			</div>
 					
