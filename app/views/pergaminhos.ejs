@@ -18,7 +18,7 @@
 					var segundosRestantes = Math.round((acoes[i].acaoTerminaEm - momentoAtual) / 1000);
 				%>
 				<li><%=acoes[i].quantidade%> <%=txt_acao%>
-					- <small>restam <%=segundosRestantes%> segundos
+					- <small>restam <span class="tempo-restante"><%=segundosRestantes%></span> segundos
 					- <a href="#">revogar ordem</a></small>
 				</li>
 			<% } %>

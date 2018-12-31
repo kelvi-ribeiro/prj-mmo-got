@@ -35,11 +35,28 @@
 						method:'get',
 						success:function(data){
 							$('#acoes').html(data);
+							clearTimeout(timeId)
+							cronometro();
 						}
 					})
 				});
 			});
-
+		var timeId = null;
+		function cronometro(){
+				var segundosAtuais = 0;	
+				var elementoAtual = null;		
+			$('.tempo-restante').each(function(){
+				elementoAtual = this;
+				var segundos = $(this).html();
+				segundosAtuais = parseInt(segundos) - 1;				
+				$(this).html(segundosAtuais);
+			});
+			if(segundosAtuais >= 0){				
+				timeId = setTimeout('cronometro()',1000);
+			}else{
+				$(elementoAtual).html(0);
+			}
+		}
 			
 		</script>
 
