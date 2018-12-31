@@ -13,6 +13,16 @@
 	
 		<!-- incluindo css -->
 		<link href="css/style.css" rel="stylesheet">
+		<script>
+			$(document).ready(function(){
+				$('#btn_sair').click(function(){					
+					window.location.href = '/sair';
+
+				});
+			});
+
+			
+		</script>
 
 	</head>
 
@@ -21,7 +31,7 @@
 		<nav class="navbar navbar-default navbar-static-top">
 			<div class="container">
 				<div class="form-group sair">
-					<button type="button" class="btn btn-info pull-right">Sair</button>
+					<button type="button" class="btn btn-info pull-right" id="btn_sair">Sair</button>
 				</div>
 			</div>
 		</nav>
