@@ -20,6 +20,14 @@
 
 		<nav class="navbar navbar-default navbar-static-top">
 			<div class="container">
+					<%if(userNotFound){ %>
+						<div class="alert alert-danger" role="alert">
+							<strong>Atenção</strong>
+							<ul>
+								<li>Usuário <%=dadosForm.usuario%> não encontrado</li>
+							</ul>
+						</div>
+					<% }%>
 				<%if(validacao.length > 0){ %>
 					<div class="alert alert-danger" role="alert">
 						<strong>Atenção</strong>

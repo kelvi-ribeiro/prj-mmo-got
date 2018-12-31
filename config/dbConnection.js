@@ -12,13 +12,15 @@ client.close();
     });
 };
 function query(db, dados) {
-var collection = db.collection(dados.collection);
-switch (dados.operacao) {
-case "inserir":
-collection.insertOne(dados.usuario, dados.callback);
-break;
-default:
-break;
+    var collection = db.collection(dados.collection);
+    switch (dados.operacao) {
+        case "inserir":
+            collection.insertOne(dados.usuario, dados.callback);
+            break;
+        case "pesquisar":
+            collection.find(dados.usuario).toArray(dados.callback)
+            break;
+        default:       
     }
 }
 module.exports = function() {

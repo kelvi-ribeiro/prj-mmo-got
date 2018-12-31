@@ -1,5 +1,5 @@
 module.exports.index = function(application,req,res){
-    res.render('index',{validacao:{},dadosForm:{}})
+    res.render('index',{validacao:{},dadosForm:{},userNotFound:false})
 }
 
 module.exports.autenticar = function(application,req,res){
@@ -8,8 +8,11 @@ module.exports.autenticar = function(application,req,res){
     req.assert('senha','Senha não pode ser vazio').notEmpty();
     var erros = req.validationErrors();
     if(erros){
-        res.render('index',{validacao:erros,dadosForm:dadosForm});
+        res.render('index',{validacao:erros,dadosForm:dadosForm,userNotFound:false});
         return;
     }
-    res.send('Tudo ok para criar a sessão');
+    var connection = application.config.dbConnection;
+    var usuarioDAO = new application.app.models.UsuarioDAO(connection);
+    usuarioDAO.autenticar(dadosForm,req,res);
+    //res.send('Tudo ok para criar a sessão');
 }
