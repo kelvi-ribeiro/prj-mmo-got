@@ -26,8 +26,7 @@ module.exports.pergaminhos = function(application,req,res){
     verificaUsuarioAutenticado(req,res);
     var connection = application.config.dbConnection;
     var jogoDAO = new application.app.models.JogoDAO(connection);
-    jogoDAO.getAcoes(connection,req.session.usuario);      
-    res.render('pergaminhos');
+    jogoDAO.getAcoes(res,req.session.usuario);          
 }
 
 module.exports.ordenarAcaoSudito = function(application,req,res){  

@@ -38,13 +38,17 @@ JogoDAO.prototype.iniciaJogo = function(usuario,res,casa,mensagem) {
 JogoDAO.prototype.acao = function(acao) {
     var date = new Date();    
     var tempo = null;
-    switch(acao.acao){
+    switch(parseInt(acao.acao)){
         case 1: tempo = 1 * 60 * 60000;
+        break;
         case 2: tempo = 2 * 60 * 60000;
+        break;
         case 3: tempo = 5 * 60 * 60000;
+        break;
         case 4: tempo = 5 * 60 * 60000;
+        default:
     }
-    acao.acaoTerminaEm  = date.getTime(); 
+    acao.acaoTerminaEm  = date.getTime() + tempo; 
     var dados = {
     operacao: "inserir",
     entity: acao,
@@ -56,13 +60,13 @@ JogoDAO.prototype.acao = function(acao) {
     this._connection(dados);
 }
 
-JogoDAO.prototype.getAcoes = function(connection,usuario) {            
+JogoDAO.prototype.getAcoes = function(res,usuario) {            
     var dados = {
     operacao: "pesquisar",
     entity: usuario,
     collection: "acao",
     callback: function(err, result) {          
-        console.log(result);
+        res.render('pergaminhos',{acoes:result})
      }
     };
     this._connection(dados);        
