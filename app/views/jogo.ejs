@@ -35,13 +35,13 @@
 						method:'get',
 						success:function(data){
 							$('#acoes').html(data);
-							clearTimeout(timeId)
+							clearTimeout(setTimeOutInstance)
 							cronometro();
 						}
 					})
 				});
 			});
-		var timeId = null;
+		var setTimeOutInstance = null;
 		function cronometro(){
 				var segundosAtuais = 0;	
 				var elementoAtual = null;		
@@ -51,9 +51,10 @@
 				segundosAtuais = parseInt(segundos) - 1;				
 				$(this).html(segundosAtuais);
 			});
-			if(segundosAtuais >= 0){				
-				timeId = setTimeout('cronometro()',1000);
+			if(segundosAtuais > 0){				
+				setTimeOutInstance = setTimeout('cronometro()',1000);
 			}else{
+				window.location.href = '/jogo?mensagem=JF'
 				$(elementoAtual).html(0);
 			}
 		}
@@ -81,6 +82,11 @@
 				<% if(mensagem == 'S') { %>
 					<div class="alert alert-info" role="alert" id="mensagem">
 						<strong>Operação realizada com sucesso</strong>
+					</div>
+				<% } %>
+				<% if(mensagem == 'JF') { %>
+					<div class="alert alert-info" role="alert" id="mensagem">
+						<strong>Senhor, mais uma ação foi finalizada</strong>
 					</div>
 				<% } %>
 			<div class="row">
