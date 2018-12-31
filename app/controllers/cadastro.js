@@ -13,7 +13,9 @@ module.exports.cadastrar = function(application,req,res){
     var erros = req.validationErrors();
     if(erros){
         res.render('cadastro',{validacao:erros, dadosForm:dadosForm});
-        return
+        return;
     }
-    res.send('Tudo certo');
+    var connection = application.config.dbConnection;    
+    var usuarioDAO = new application.app.models.UsuarioDAO(connection);
+    usuarioDAO.inserirUsuario(dadosForm,res);
 }
