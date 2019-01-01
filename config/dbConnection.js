@@ -23,8 +23,7 @@ function query(db, dados) {
                 dados.entity[1]
             );
             break;
-        case "deletar": 
-            console.log(dados.entity)           
+        case "deletar":                 
             collection.deleteOne(
                 dados.entity,
                 dados.callback
