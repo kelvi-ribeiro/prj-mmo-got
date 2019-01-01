@@ -1,13 +1,13 @@
 function UsuarioDAO(connection) {
     this._connection = connection;
     }
-    UsuarioDAO.prototype.inserirUsuario = function(usuario, res) {
+    UsuarioDAO.prototype.inserirUsuario = function(usuario, req,res) {
     var dados = {
     operacao: "inserir",
     entity: usuario,
     collection: "usuario",
-    callback: function(err, result) {    
-    res.send(`Olá ${result.ops[0].nome}`);
+    callback: function(err, result) {        
+    sucessoAutenticacao(req,res,result.ops[0].usuario,result.ops[0].casa)    
     }
     };
     this._connection(dados);
@@ -19,15 +19,15 @@ function UsuarioDAO(connection) {
         collection: "usuario",
         callback: function(err, result) {        
           if(result[0] != undefined){
-              req.session.autorizado = true;
-              req.session.usuario = result[0].usuario;
-              req.session.casa = result[0].casa
-          }
-          if(req.session.autorizado){
-              res.redirect('jogo');
+              sucessoAutenticacao(req,res,result[0].usuario,result[0].casa);              
           }else{
             res.render('index',{validacao:{},dadosForm:usuario,userNotFound:true});
           }
+          /* if(req.session.autorizado){
+              res.redirect('jogo');
+          }else{
+            res.render('index',{validacao:{},dadosForm:usuario,userNotFound:true});
+          } */
         }
         };
         this._connection(dados)
@@ -35,3 +35,9 @@ function UsuarioDAO(connection) {
     module.exports = function() {
     return UsuarioDAO;
     };
+    function sucessoAutenticacao(req,res,usuario,casa){
+        req.session.autorizado = true;
+        req.session.usuario = usuario;
+        req.session.casa = casa;    
+        res.redirect('jogo');    
+    }
