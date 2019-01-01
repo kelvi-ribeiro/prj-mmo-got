@@ -57,7 +57,32 @@ JogoDAO.prototype.acao = function(acao) {
     
     }
     };
+    
     this._connection(dados);
+    // Atualizar Moedas
+    var moedas = null;
+    switch(parseInt(acao.acao)){
+        case 1: moedas = -2 * acao.quantidade;
+        break;
+        case 2: moedas =  -3 * acao.quantidade;
+        break;
+        case 3: moedas =  -3 * acao.quantidade;
+        break;
+        case 4: moedas = -3 * acao.quantidade;
+        default:
+    }
+    const acaoParametersToUpdate = [
+        {usuario:acao.usuario},
+        {$inc:{moedas:moedas}}        
+    ];        
+    var dados = {
+        operacao: "atualizar",
+        entity: acaoParametersToUpdate,
+        collection: "jogo",
+        callback: ''
+        };
+        this._connection(dados)
+    
 }
 
 JogoDAO.prototype.getAcoes = function(res,usuario) {            

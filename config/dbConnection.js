@@ -17,6 +17,13 @@ function query(db, dados) {
         case "inserir":            
             collection.insertOne(dados.entity, dados.callback);
             break;
+        case "atualizar":
+            console.log('dados.entity',dados.entity)
+            collection.updateOne(
+                dados.entity[0],
+                dados.entity[1]
+            );
+            break;
         case "pesquisar":
             collection.find(dados.entity).toArray(dados.callback)
             break;
