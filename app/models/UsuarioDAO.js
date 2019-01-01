@@ -1,7 +1,10 @@
+var crypto = require('crypto');
 function UsuarioDAO(connection) {
     this._connection = connection;
     }
-    UsuarioDAO.prototype.inserirUsuario = function(usuario, req,res) {
+    UsuarioDAO.prototype.inserirUsuario = function(usuario, req,res) {    
+    const senhaCriptografada = crypto.createHash('md5').update(usuario.senha).digest("hex");
+    usuario.senha = senhaCriptografada;
     var dados = {
     operacao: "inserir",
     entity: usuario,
@@ -13,6 +16,9 @@ function UsuarioDAO(connection) {
     this._connection(dados);
     }
     UsuarioDAO.prototype.autenticar = function(usuario, req,res) {
+        const senhaDescriptografada = usuario.senha;
+        const senhaCriptografada = crypto.createHash('md5').update(usuario.senha).digest("hex");
+        usuario.senha = senhaCriptografada;
         var dados = {
         operacao: "pesquisar",
         entity: usuario,
@@ -21,6 +27,7 @@ function UsuarioDAO(connection) {
           if(result[0] != undefined){
               sucessoAutenticacao(req,res,result[0].usuario,result[0].casa);              
           }else{
+            usuario.senha = senhaDescriptografada;
             res.render('index',{validacao:{},dadosForm:usuario,userNotFound:true});
           }
           /* if(req.session.autorizado){
