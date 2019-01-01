@@ -1,5 +1,9 @@
-module.exports.index = function(application,req,res){
-    res.render('index',{validacao:{},dadosForm:{},userNotFound:false})
+module.exports.index = function(application,req,res){    
+    if(!req.session.autorizado){
+        res.render('index',{validacao:{},dadosForm:{},userNotFound:false})
+    }else{        
+        res.redirect('jogo');    
+    }
 }
 
 module.exports.autenticar = function(application,req,res){
