@@ -89,6 +89,11 @@
 						<strong>Senhor, mais uma ação foi finalizada</strong>
 					</div>
 				<% } %>
+				<% if(mensagem == 'D') { %>
+					<div class="alert alert-info" role="alert" id="mensagem">
+						<strong>Senhor, sua ordem foi revogada</strong>
+					</div>
+				<% } %>
 			<div class="row">
 	    		<div class="col-sm-3 casa">
 					<img src="images/casa_<%=imgCasa%>.jpg" />

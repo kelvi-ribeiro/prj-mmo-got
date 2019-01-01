@@ -1,3 +1,4 @@
+var objectId = require('mongodb').ObjectId;
 function JogoDAO(connection) {
     this._connection = connection;
 }
@@ -86,13 +87,25 @@ JogoDAO.prototype.acao = function(acao) {
 }
 
 JogoDAO.prototype.getAcoes = function(res,usuario) {            
-    const momentoAtual = new Date().getTime();
+    const momentoAtual = new Date().getTime();    
     var dados = {
     operacao: "pesquisar",
     entity: {usuario:usuario,acaoTerminaEm:{$gt:momentoAtual}},
     collection: "acao",
     callback: function(err, result) {          
         res.render('pergaminhos',{acoes:result})
+     }
+    };
+    this._connection(dados);        
+}
+
+JogoDAO.prototype.revogarAcao = function(acaoId,res) {                
+    var dados = {
+    operacao: "deletar",
+    entity: {_id:objectId(acaoId)},        
+    collection: "acao",
+    callback: function(err, result) {          
+        res.redirect('/jogo?mensagem=D');
      }
     };
     this._connection(dados);        

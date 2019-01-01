@@ -17,11 +17,17 @@ function query(db, dados) {
         case "inserir":            
             collection.insertOne(dados.entity, dados.callback);
             break;
-        case "atualizar":
-            console.log('dados.entity',dados.entity)
+        case "atualizar":            
             collection.updateOne(
                 dados.entity[0],
                 dados.entity[1]
+            );
+            break;
+        case "deletar": 
+            console.log(dados.entity)           
+            collection.deleteOne(
+                dados.entity,
+                dados.callback
             );
             break;
         case "pesquisar":

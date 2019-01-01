@@ -48,6 +48,14 @@ module.exports.ordenarAcaoSudito = function(application,req,res){
     res.redirect('jogo?mensagem=S');
 }
 
+module.exports.revogarAcao = function(application,req,res){  
+    verificaUsuarioAutenticado(req,res); 
+    var urlQuery = req.query;
+    var connection = application.config.dbConnection;
+    var jogoDAO = new application.app.models.JogoDAO(connection); 
+    jogoDAO.revogarAcao(urlQuery.idAcao,res);    
+}
+
 function verificaUsuarioAutenticado(req,res){
     if(req.session.autorizado !== true){
         res.render('index',{validacao:{},dadosForm:{},userNotFound:false});
